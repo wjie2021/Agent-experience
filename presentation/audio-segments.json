@@ -1,0 +1,116 @@
+[
+  {
+    "chapter": "coldopen",
+    "step": 1,
+    "text": "你以为 AI 只能当搜索引擎用？我之前也这么想。",
+    "audio": "coldopen/1.mp3"
+  },
+  {
+    "chapter": "coldopen",
+    "step": 2,
+    "text": "chatgpt 刚出来那会儿，我基本就是拿它搜东西。后来工具越来越多，我从面向 CSDN 编程，变成了面向 Deepseek 编程。换了个搜索框而已。",
+    "audio": "coldopen/2.mp3"
+  },
+  {
+    "chapter": "coldopen",
+    "step": 3,
+    "text": "在 IDEA 里写代码的时候，最多用它补全几行。或者提个需求，让它改改代码，自己看看合不合适，合适就采纳。",
+    "audio": "coldopen/3.mp3"
+  },
+  {
+    "chapter": "coldopen",
+    "step": 4,
+    "text": "复杂的业务逻辑？不敢交给它。所以 AI 发展得再快，我也没真正体会到智能体有多方便。",
+    "audio": "coldopen/4.mp3"
+  },
+  {
+    "chapter": "skill-reveal",
+    "step": 1,
+    "text": "转折点是老板有次演讲提到了 Skill。我当时心里想，这又是哪个大厂搞出来卖 token 的噱头。",
+    "audio": "skill-reveal/1.mp3"
+  },
+  {
+    "chapter": "skill-reveal",
+    "step": 2,
+    "text": "但我还是去查了。顺着 Skill 往回挖，发现了一整条链路。LLM，上下文，Function Calling，MCP，最后到 Skill。挖完我才明白智能体在干嘛。",
+    "audio": "skill-reveal/2.mp3"
+  },
+  {
+    "chapter": "skill-reveal",
+    "step": 3,
+    "text": "早期用 AI 写代码，就是在 IDE 对话框里描述需求，或者贴个文档，然后让它生成代码。这样出来的东西质量不好控制。魔法值、注释风格、变量命名，全都随缘。",
+    "audio": "skill-reveal/3.mp3"
+  },
+  {
+    "chapter": "skill-reveal",
+    "step": 4,
+    "text": "所以我就想了个办法：把这些常用的、规范化的提示词整理好，放到一个固定的位置。这就是 Skill。它其实就是提示词换了个位置。",
+    "audio": "skill-reveal/4.mp3"
+  },
+  {
+    "chapter": "three-skills",
+    "step": 1,
+    "text": "再看实际做出来的东西。直接让 AI 写代码不好控制，一行一行复读代码又太慢。我就想，有没有办法同时提高代码质量和复读效率。",
+    "audio": "three-skills/1.mp3"
+  },
+  {
+    "chapter": "three-skills",
+    "step": 2,
+    "text": "第一个，req-to-api。把需求文档丢进去，分析业务逻辑和功能关联。输出汇总文档，然后建表语句，然后 API 文档。还有自检。",
+    "audio": "three-skills/2.mp3"
+  },
+  {
+    "chapter": "three-skills",
+    "step": 3,
+    "text": "第二个，api-to-code。读 API 文档，按我的代码规范生成后端代码。Controller、Service、Cmd、Query、VO 全套。自检加交叉核对。",
+    "audio": "three-skills/3.mp3"
+  },
+  {
+    "chapter": "three-skills",
+    "step": 4,
+    "text": "第三个，code-review。对指定模块做多维度质量审查，按置信度评分分级，最后出一份 Markdown 审查报告。",
+    "audio": "three-skills/4.mp3"
+  },
+  {
+    "chapter": "three-skills",
+    "step": 5,
+    "text": "这三个 Skill 串起来就是完整的工作流：需求进去，设计出来，代码出来，质量报告出来。",
+    "audio": "three-skills/5.mp3"
+  },
+  {
+    "chapter": "quick-tips",
+    "step": 1,
+    "text": "然后说怎么快速生成 Skill。其实上面那几个，就是我在一个对话窗口里让 AI 完成了一项任务，然后让它把整个过程整理成 Skill。我自己核对一下就行了。",
+    "audio": "quick-tips/1.mp3"
+  },
+  {
+    "chapter": "quick-tips",
+    "step": 2,
+    "text": "记忆和规则我也试过。用得不多，因为它们跟 Skill 就是一回事，都是提示词换个位置。",
+    "audio": "quick-tips/2.mp3"
+  },
+  {
+    "chapter": "quick-tips",
+    "step": 3,
+    "text": "你可以在规则里写开发规范、任务边界。比如 XML 里 SQL 怎么对齐，代码里注释什么风格，都行。",
+    "audio": "quick-tips/3.mp3"
+  },
+  {
+    "chapter": "quick-tips",
+    "step": 4,
+    "text": "还有个技巧我一直在用。AI 写的代码现在还不够稳。手写代码的时候你有思考过程，AI 没有。所以让 AI 写代码之前，先让它出设计文档。你核对文档，确认没问题，再让它写代码。最关键的一步：提示词里要写清楚，代码写完之后做交叉核验。正确率会高很多。",
+    "audio": "quick-tips/4.mp3"
+  },
+  {
+    "chapter": "close",
+    "step": 1,
+    "text": "大家可以研究下 Skill 这个东西。其实就是把自己的工作流用文档写下来，省很多时间。",
+    "audio": "close/1.mp3"
+  },
+  {
+    "chapter": "close",
+    "step": 2,
+    "text": "大家可以试试，把自己的工作流整理成 Skill。官方文档在这里，自己去翻。",
+    "audio": "close/2.mp3"
+  }
+]

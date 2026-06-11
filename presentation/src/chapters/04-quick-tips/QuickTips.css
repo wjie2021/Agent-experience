@@ -1,0 +1,259 @@
+/* ─────────────────────────────────────────────────────────────────────
+ * QuickTips — Chapter 4: "快速生成 + 小技巧"
+ * Theme: midnight-press tokens. Prefix: .qt-
+ * ───────────────────────────────────────────────────────────────────── */
+
+.qt-panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 700ms var(--ease-quart), transform 700ms var(--ease-quart);
+}
+.qt-panel.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.qt-panel--1:not(.is-active) { transform: translateX(-60px); }
+.qt-panel--2 { transform: translateX(60px); }
+.qt-panel--2.is-active { transform: translateX(0); }
+.qt-panel--2:not(.is-active) { transform: scale(0.95); }
+.qt-panel--3:not(.is-active) { transform: translateY(-40px); }
+
+/* ── Step 0: Generate ── */
+.qt-generate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  width: 100%;
+  height: 100%;
+}
+
+.qt-generate__chat {
+  width: 560px;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+}
+
+.qt-generate__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--surface-3);
+  border-bottom: 1px solid var(--rule);
+}
+
+.qt-generate__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.qt-generate__msgs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+}
+
+.qt-generate__msg {
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 1.6;
+  padding: 14px 18px;
+  border-radius: var(--r-sm);
+  max-width: 85%;
+}
+
+.qt-generate__msg--user {
+  background: var(--surface-3);
+  color: var(--text-2);
+  align-self: flex-end;
+}
+
+.qt-generate__msg--ai {
+  background: var(--accent-soft);
+  color: var(--text);
+  align-self: flex-start;
+}
+
+.qt-generate__label {
+  font-size: clamp(20px, 1.8vw, 28px);
+  color: var(--text-mute);
+  margin: 0;
+  text-align: center;
+}
+
+/* ── Step 1: Memory ── */
+.qt-memory {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  width: 100%;
+  height: 100%;
+}
+
+.qt-memory__title {
+  font-size: clamp(28px, 2.5vw, 40px);
+  color: var(--text);
+  margin: 0;
+}
+
+.qt-memory__row {
+  display: flex;
+  gap: 24px;
+}
+
+.qt-memory__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 28px 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.qt-memory__card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent-soft);
+  opacity: 0;
+  transition: opacity 600ms var(--ease-quart);
+  transition-delay: var(--light-delay, 0s);
+}
+.qt-memory__card.is-lit::after {
+  opacity: 1;
+}
+
+.qt-memory__name {
+  font-family: var(--font-display-cn);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+  position: relative;
+  z-index: 1;
+}
+
+.qt-memory__sub {
+  font-family: var(--font-body);
+  font-size: 18px;
+  color: var(--text-mute);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Step 2: Rules ── */
+.qt-rules {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  width: 100%;
+  height: 100%;
+}
+
+.qt-rules__title {
+  font-size: clamp(28px, 2.5vw, 40px);
+  color: var(--text);
+  margin: 0;
+}
+
+.qt-rules__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.qt-rules__item {
+  padding: 20px 32px;
+  font-family: var(--font-body);
+  font-size: 22px;
+  color: var(--text-2);
+  text-align: center;
+}
+
+/* ── Step 3: Trick ── */
+.qt-trick {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
+  height: 100%;
+}
+
+.qt-trick__title {
+  font-size: clamp(28px, 2.5vw, 40px);
+  color: var(--text);
+  margin: 0;
+}
+
+.qt-trick__flow {
+  display: flex;
+  align-items: center;
+}
+
+.qt-trick__node-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.qt-trick__arrow {
+  font-family: var(--font-display-en);
+  font-style: italic;
+  font-size: 24px;
+  color: var(--text-faint);
+  margin: 0 12px;
+}
+
+.qt-trick__node {
+  padding: 18px 28px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+  font-family: var(--font-body);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text);
+  position: relative;
+  overflow: hidden;
+}
+
+.qt-trick__node::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent-soft);
+  opacity: 0;
+  transition: opacity 600ms var(--ease-quart);
+  transition-delay: var(--light-delay, 0s);
+}
+.qt-trick__node.is-lit::after {
+  opacity: 1;
+}
+
+.qt-trick__node--accent {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.qt-trick__caption {
+  font-size: clamp(20px, 1.8vw, 28px);
+  color: var(--text-mute);
+  margin: 0;
+  text-align: center;
+}

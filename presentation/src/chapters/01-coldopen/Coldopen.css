@@ -1,0 +1,294 @@
+/* ─────────────────────────────────────────────────────────────────────
+ * Coldopen — Chapter 1: "从搜索引擎到不敢放手"
+ * Theme: midnight-press tokens only for color/font. Sizes/spacing free.
+ * Prefix: .co-
+ * ───────────────────────────────────────────────────────────────────── */
+
+/* ── shared scene ── */
+.co-scene {
+  /* chapter-scoped IDE chrome + syntax tokens (not in theme contract) */
+  --co-dot-red: #ff5f57;
+  --co-dot-yellow: #febc2e;
+  --co-dot-green: #28c840;
+  --co-syntax-type: #e5c07b;
+  --co-syntax-fn: #61afef;
+}
+
+/* ── panel system: all stacked, transition on active ── */
+.co-scene__panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: opacity 700ms var(--ease-quart), transform 700ms var(--ease-quart);
+}
+
+/* default: hidden + slightly offset */
+.co-scene__panel {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* active panel */
+.co-scene__panel.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* exit: 0→1 fades up */
+.co-scene__panel:not(.co-scene__panel--1):not(.co-scene__panel--2):not(.co-scene__panel--3) {
+  --exit-up: -40px;
+}
+.co-scene__panel:not(.co-scene__panel--1):not(.co-scene__panel--2):not(.co-scene__panel--3):not(.is-active) {
+  transform: translateY(var(--exit-up, -40px));
+}
+
+/* 1→2: slide left/right */
+.co-scene__panel--1:not(.is-active) { transform: translateX(-60px); }
+.co-scene__panel--2 { transform: translateX(60px); }
+.co-scene__panel--2.is-active { transform: translateX(0); }
+
+/* 2→3: scale down → rise */
+.co-scene__panel--2:not(.is-active) { transform: scale(0.95); }
+
+/* ── Step 0: Hook ── */
+.co-hook {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.co-hook__bg-icon {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  color: var(--text-faint);
+  opacity: 0.18;
+}
+.co-hook__bg-icon.is-animating {
+  animation: co-pulse 4s var(--ease-soft) infinite;
+}
+
+@keyframes co-pulse {
+  0%, 100% { opacity: 0.18; transform: scale(1); }
+  50%      { opacity: 0.10; transform: scale(1.06); }
+}
+
+.co-hook__text {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 0 160px;
+  text-align: center;
+}
+
+.co-hook__question {
+  font-size: clamp(56px, 5vw, 88px);
+  line-height: 1.25;
+  color: var(--text);
+  margin: 0;
+}
+
+.co-hook__rule {
+  width: 120px;
+}
+
+.co-hook__answer {
+  font-size: clamp(28px, 2.5vw, 40px);
+  color: var(--text-mute);
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ── Step 1: CSDN → Deepseek ── */
+.co-transition {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 64px;
+  width: 100%;
+  height: 100%;
+}
+
+.co-transition__flow {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.co-transition__old {
+  font-size: 16px;
+  color: var(--text-faint);
+  text-decoration: line-through;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+}
+
+.co-transition__arrow {
+  font-family: var(--font-display-en);
+  font-style: italic;
+  font-size: 36px;
+  color: var(--accent);
+}
+.co-transition__arrow.is-animating {
+  animation: co-arrow-nudge 2s var(--ease-soft) infinite;
+}
+
+@keyframes co-arrow-nudge {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(8px); }
+}
+
+.co-transition__new {
+  font-size: 16px;
+  color: var(--accent);
+}
+
+.co-transition__punch {
+  max-width: 600px;
+}
+
+/* ── Step 2: IDE mock ── */
+.co-ide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  width: 100%;
+  height: 100%;
+}
+
+.co-ide__editor {
+  width: 720px;
+  overflow: hidden;
+  border-radius: var(--r-sm);
+}
+
+.co-ide__titlebar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--surface-3);
+  border-bottom: 1px solid var(--rule);
+}
+
+.co-ide__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.co-ide__dot--r { background: var(--co-dot-red); }
+.co-ide__dot--y { background: var(--co-dot-yellow); }
+.co-ide__dot--g { background: var(--co-dot-green); }
+
+.co-ide__filename {
+  margin-left: 12px;
+  font-size: 14px;
+  color: var(--text-mute);
+}
+
+.co-ide__body {
+  padding: 24px 20px;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-2);
+}
+
+.co-ide__line {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.co-ide__ln {
+  width: 28px;
+  text-align: right;
+  color: var(--text-faint);
+  font-size: 14px;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.co-ide__kw { color: var(--accent); }
+.co-ide__type { color: var(--co-syntax-type); }
+.co-ide__fn { color: var(--co-syntax-fn); }
+
+.co-ide__line--ghost {
+  position: relative;
+}
+
+.co-ide__ghost-text {
+  color: var(--text-faint);
+  opacity: 0.5;
+  font-style: italic;
+}
+.co-ide__ghost-text.is-animating {
+  animation: co-ghost-blink 2.4s ease-in-out infinite;
+}
+
+@keyframes co-ghost-blink {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 0.2; }
+}
+
+.co-ide__caption {
+  font-size: clamp(24px, 2.2vw, 36px);
+  color: var(--text-2);
+  margin: 0;
+  text-align: center;
+}
+
+/* ── Step 3: Trust barrier ── */
+.co-barrier {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
+  height: 100%;
+}
+
+.co-barrier__icon {
+  width: 120px;
+  height: 120px;
+  color: var(--accent);
+  filter: drop-shadow(0 0 30px var(--accent-glow));
+}
+.co-barrier__icon.is-animating {
+  animation: co-barrier-float 3s var(--ease-soft) infinite;
+}
+
+@keyframes co-barrier-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+.co-barrier__text {
+  font-size: clamp(56px, 5vw, 88px);
+  color: var(--text);
+  margin: 0;
+  text-align: center;
+}
+
+.co-barrier__sub {
+  font-size: clamp(20px, 1.8vw, 28px);
+  color: var(--text-mute);
+  margin: 0;
+  text-align: center;
+  max-width: 600px;
+}

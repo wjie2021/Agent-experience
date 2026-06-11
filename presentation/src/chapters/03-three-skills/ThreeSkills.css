@@ -1,0 +1,312 @@
+/* ─────────────────────────────────────────────────────────────────────
+ * ThreeSkills — Chapter 3: "三个 Skill 串起完整工作流"
+ * Theme: midnight-press tokens. Prefix: .ts-
+ * ───────────────────────────────────────────────────────────────────── */
+
+/* ── panel system ── */
+.ts-panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 700ms var(--ease-quart), transform 700ms var(--ease-quart);
+}
+.ts-panel.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.ts-panel--1:not(.is-active) { transform: translateX(-60px); }
+.ts-panel--2 { transform: translateX(60px); }
+.ts-panel--2.is-active { transform: translateX(0); }
+.ts-panel--2:not(.is-active) { transform: scale(0.95); }
+.ts-panel--3:not(.is-active) { transform: translateX(-60px); }
+.ts-panel--4 { transform: translateY(40px); }
+.ts-panel--4.is-active { transform: translateY(0); }
+
+/* ── Step 0: Problem ── */
+.ts-problem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 56px;
+  width: 100%;
+  height: 100%;
+}
+
+.ts-problem__split {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.ts-problem__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 40px;
+  min-width: 220px;
+  text-align: center;
+}
+
+.ts-problem__icon {
+  font-size: 36px;
+  line-height: 1;
+}
+
+.ts-problem__label {
+  font-family: var(--font-display-cn);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.ts-problem__detail {
+  font-family: var(--font-body);
+  font-size: 18px;
+  color: var(--text-mute);
+}
+
+.ts-problem__vs {
+  font-family: var(--font-display-en);
+  font-style: italic;
+  font-size: 32px;
+  color: var(--accent);
+}
+
+.ts-problem__question {
+  font-size: clamp(24px, 2.2vw, 36px);
+  color: var(--text-2);
+  margin: 0;
+  text-align: center;
+}
+
+/* ── Skill scenes (shared) ── */
+.ts-skill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  width: 100%;
+  height: 100%;
+}
+
+.ts-skill__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ts-skill__name {
+  font-size: clamp(28px, 2.5vw, 40px);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+}
+
+.ts-skill__flow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+}
+
+.ts-skill__node-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.ts-skill__arrow {
+  font-family: var(--font-display-en);
+  font-style: italic;
+  font-size: 24px;
+  color: var(--text-faint);
+  margin: 0 12px;
+}
+
+.ts-skill__node {
+  padding: 16px 24px;
+  font-family: var(--font-body);
+  font-size: 20px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+/* ── Step 2: api-to-code codegen ── */
+.ts-codegen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.ts-codegen__input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 32px;
+}
+
+.ts-codegen__file {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--text);
+}
+
+.ts-codegen__outputs {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ts-codegen__file {
+  padding: 14px 20px;
+  font-size: 18px;
+}
+
+/* ── Step 3: code-review ── */
+.ts-review {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ts-review__input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 28px;
+}
+
+.ts-review__module {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--text);
+}
+
+.ts-review__arrow {
+  font-family: var(--font-display-en);
+  font-style: italic;
+  font-size: 24px;
+  color: var(--text-faint);
+}
+
+.ts-review__dims {
+  display: flex;
+  gap: 10px;
+}
+
+.ts-review__dim {
+  padding: 12px 18px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+  font-family: var(--font-body);
+  font-size: 18px;
+  color: var(--text-2);
+}
+
+.ts-review__output {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 32px;
+}
+
+.ts-review__score {
+  font-size: clamp(48px, 4vw, 72px);
+  color: var(--accent);
+}
+
+/* ── Step 4: Pipeline ── */
+.ts-pipeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  width: 100%;
+  height: 100%;
+}
+
+.ts-pipeline__title {
+  font-size: clamp(28px, 2.5vw, 40px);
+  color: var(--text);
+  margin: 0;
+}
+
+.ts-pipeline__row {
+  display: flex;
+  align-items: center;
+}
+
+.ts-pipeline__node-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.ts-pipeline__connector {
+  font-family: var(--font-display-en);
+  font-style: italic;
+  font-size: 24px;
+  color: var(--text-faint);
+  margin: 0 12px;
+}
+
+.ts-pipeline__node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 28px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.ts-pipeline__node::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent-soft);
+  opacity: 0;
+  transition: opacity 600ms var(--ease-quart);
+  transition-delay: var(--light-delay, 0s);
+}
+.ts-pipeline__node.is-lit::after {
+  opacity: 1;
+}
+
+.ts-pipeline__icon {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.ts-pipeline__label {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.ts-pipeline__caption {
+  font-size: clamp(20px, 1.8vw, 28px);
+  color: var(--text-mute);
+  margin: 0;
+  text-align: center;
+}

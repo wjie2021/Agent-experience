@@ -1,0 +1,92 @@
+/* ─────────────────────────────────────────────────────────────────────
+ * Close — Chapter 5: "鼓励探索"
+ * Theme: midnight-press tokens. Prefix: .cl-
+ * ───────────────────────────────────────────────────────────────────── */
+
+.cl-panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 700ms var(--ease-quart), transform 700ms var(--ease-quart);
+}
+.cl-panel.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.cl-panel--1:not(.is-active) { transform: translateY(-40px); }
+
+/* ── Step 0: Summary ── */
+.cl-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  width: 100%;
+  height: 100%;
+}
+
+.cl-summary__text {
+  font-size: clamp(48px, 4.5vw, 72px);
+  color: var(--text);
+  margin: 0;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.cl-summary__accent {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.cl-summary__rule {
+  width: 160px;
+}
+
+.cl-summary__sub {
+  font-size: clamp(24px, 2.2vw, 36px);
+  color: var(--text-mute);
+  margin: 0;
+}
+
+/* ── Step 1: CTA ── */
+.cl-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  width: 100%;
+  height: 100%;
+}
+
+.cl-cta__text {
+  font-size: clamp(32px, 3vw, 48px);
+  color: var(--text);
+  margin: 0;
+  text-align: center;
+}
+
+.cl-cta__rule {
+  width: 120px;
+}
+
+.cl-cta__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 28px 40px;
+}
+
+.cl-cta__url {
+  font-size: clamp(20px, 1.8vw, 28px);
+  color: var(--accent);
+  letter-spacing: var(--track-caps);
+}

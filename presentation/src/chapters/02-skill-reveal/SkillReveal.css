@@ -1,0 +1,315 @@
+/* ─────────────────────────────────────────────────────────────────────
+ * SkillReveal — Chapter 2: "从噱头到原来是这样"
+ * Theme: midnight-press tokens for color/font. Prefix: .sr-
+ * ───────────────────────────────────────────────────────────────────── */
+
+/* ── panel system ── */
+.sr-panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 700ms var(--ease-quart), transform 700ms var(--ease-quart);
+}
+.sr-panel.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.sr-panel--1:not(.is-active) { transform: translateX(-60px); }
+.sr-panel--2 { transform: translateX(60px); }
+.sr-panel--2.is-active { transform: translateX(0); }
+.sr-panel--2:not(.is-active) { transform: scale(0.95); }
+
+/* ── Step 0: Boss presentation ── */
+.sr-boss {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  width: 100%;
+  height: 100%;
+}
+
+.sr-boss__screen {
+  width: 640px;
+  padding: 32px;
+  border-radius: var(--r-sm);
+}
+
+.sr-boss__slide {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sr-boss__title {
+  font-size: 20px;
+  color: var(--text-mute);
+}
+
+.sr-boss__bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sr-boss__bullet {
+  font-family: var(--font-body);
+  font-size: 20px;
+  color: var(--text-2);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.sr-boss__bullet--highlight {
+  color: var(--accent);
+  font-weight: 600;
+  position: relative;
+  border-bottom: none;
+}
+
+.sr-boss__qmark {
+  display: inline-block;
+  margin-left: 12px;
+  font-size: 28px;
+  color: var(--accent);
+  opacity: 0;
+  transform: scale(0.5);
+}
+.sr-boss__bullet--highlight.is-animating .sr-boss__qmark {
+  animation: sr-qmark-pop 600ms var(--ease-overshoot) 800ms both;
+}
+
+@keyframes sr-qmark-pop {
+  from { opacity: 0; transform: scale(0.5) rotate(-10deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+.sr-boss__reaction {
+  font-size: clamp(20px, 1.8vw, 28px);
+  color: var(--text-mute);
+  margin: 0;
+  text-align: center;
+  max-width: 500px;
+}
+
+/* ── Step 1: Tech chain ── */
+.sr-chain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 56px;
+  width: 100%;
+  height: 100%;
+}
+
+.sr-chain__row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.sr-chain__node-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.sr-chain__connector {
+  font-family: var(--font-display-en);
+  font-style: italic;
+  font-size: 28px;
+  color: var(--text-faint);
+  margin: 0 16px;
+}
+
+.sr-chain__node {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+  color: var(--text-faint);
+  padding: 14px 24px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.sr-chain__node::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent-soft);
+  opacity: 0;
+  transition: opacity 600ms var(--ease-quart);
+  transition-delay: var(--light-delay, 0s);
+}
+
+.sr-chain__node.is-lit::after {
+  opacity: 1;
+}
+
+.sr-chain__node.is-lit {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.sr-chain__node--accent {
+  color: var(--accent);
+  border-color: var(--accent);
+  font-weight: 700;
+}
+
+.sr-chain__caption {
+  font-size: clamp(20px, 1.8vw, 28px);
+  color: var(--text-mute);
+  margin: 0;
+  text-align: center;
+}
+
+/* ── Step 2: Pain — chat dialog ── */
+.sr-pain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  width: 100%;
+  height: 100%;
+}
+
+.sr-pain__chat {
+  width: 600px;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+}
+
+.sr-pain__chat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--surface-3);
+  border-bottom: 1px solid var(--rule);
+}
+
+.sr-pain__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.sr-pain__messages {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+}
+
+.sr-pain__msg {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+  padding: 12px 16px;
+  border-radius: var(--r-sm);
+  max-width: 85%;
+}
+
+.sr-pain__msg--user {
+  background: var(--surface-3);
+  color: var(--text-2);
+  align-self: flex-end;
+}
+
+.sr-pain__msg--ai {
+  background: var(--accent-soft);
+  color: var(--text);
+  align-self: flex-start;
+}
+
+.sr-pain__msg--user.is-typing {
+  opacity: 0;
+  animation: sr-type-in 500ms var(--ease-quart) 600ms both;
+}
+
+@keyframes sr-type-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.sr-pain__label {
+  font-size: clamp(20px, 1.8vw, 28px);
+  color: var(--text-mute);
+  margin: 0;
+  text-align: center;
+}
+
+/* ── Step 3: Core insight ── */
+.sr-insight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
+  height: 100%;
+}
+
+.sr-insight__equation {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.sr-insight__left {
+  font-family: var(--font-mono);
+  font-size: clamp(28px, 2.5vw, 40px);
+  color: var(--text-mute);
+  text-decoration: line-through;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+}
+
+.sr-insight__arrow {
+  font-family: var(--font-display-en);
+  font-style: italic;
+  font-size: 36px;
+  color: var(--accent);
+}
+.sr-insight__arrow.is-animating {
+  animation: sr-arrow-pulse 2s var(--ease-soft) infinite;
+}
+
+@keyframes sr-arrow-pulse {
+  0%, 100% { transform: translateX(0); opacity: 1; }
+  50%      { transform: translateX(6px); opacity: 0.7; }
+}
+
+.sr-insight__right {
+  font-family: var(--font-mono);
+  font-size: clamp(36px, 3vw, 52px);
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+}
+
+.sr-insight__rule {
+  width: 200px;
+}
+
+.sr-insight__text {
+  font-size: clamp(36px, 3.5vw, 56px);
+  color: var(--text);
+  margin: 0;
+  text-align: center;
+}
